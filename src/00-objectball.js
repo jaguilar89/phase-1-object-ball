@@ -46,16 +46,32 @@ function playerStats(playerName) {
 function bigShoeRebounds() {
     let largestShoeSize = Math.max(...Object.values(game.players)
                                             .map(player => player.shoe))
-    for (let player in game.players) {
-        if (game.players[player].shoe === largestShoeSize) {
+    for (let playerName in game.players) {
+        if (game.players[playerName].shoe === largestShoeSize) {
             return `
             Shoe Size: ${largestShoeSize} 
-            Rebounds: ${game.players[player].rebounds}
+            Rebounds: ${game.players[playerName].rebounds}
             `
-            }
+        }
+    }
+};
+
+function mostPointsScored() {
+    let highestPoints = Math.max(...Object.values(game.players)
+                                          .map(player => player.points))
+    for (let playerName in game.players) {
+        if (game.players[playerName].points === highestPoints) {
+            return `${playerName} score the most points with ${highestPoints} points.`
+        }
     }
 }
 
+function playerWithLongestName() {
+    //Array of player names sorted by longest to shortest
+    const playerList = Object.keys(game.players)
+                             .sort((player1, player2) => player2.length - player1.length)
+    return playerList[0];
+}
 
 function gameObject() {
     return {
@@ -193,5 +209,4 @@ function gameObject() {
 
 
 
-console.log(bigShoeRebounds())
 
